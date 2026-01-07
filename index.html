@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaizen Training Solutions - Corporate Training Excellence</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#ec693d',
+                        'brand-dark': '#d3542a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        /* FAQ Animation */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-content.active {
+            /* max-height will be set by JS */
+            display: block;
+        }
+
+        .faq-inner {
+            /* padding and border are handled here */
+            padding: 1rem;
+        }
+
+        /* Marquee Styles */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .marquee-container::before,
+        .marquee-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, #2a2b2c, transparent);
+        }
+
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, #1f2224, transparent);
+        }
+
+        .marquee-content,
+        .marquee-content-right {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            padding-right: 4rem;
+            min-width: 100%;
+            flex: 0 0 auto;
+            will-change: transform;
+            flex-wrap: nowrap;
+        }
+
+        .marquee-content {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .marquee-content-right {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        .marquee-item {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 60px;
+        }
+
+        .marquee-item img {
+            max-height: 80%;
+            max-width: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+
+            /* WHITE LOGO STYLES */
+            filter: invert(1) grayscale(1) brightness(10) contrast(100);
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .marquee-item img:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Testimonial Truncation Styles */
+        .testimonial-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-text.expanded {
+            -webkit-line-clamp: unset;
+            line-clamp: unset;
+            display: block;
+        }
+
+        .testimonial-card {
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        /* Hero Form Minimalist Styles */
+        .hero-input {
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+            border-radius: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            color: #1a202c !important;
+            transition: border-color 0.3s;
+        }
+
+        .hero-input:focus {
+            border-bottom-color: #ec693d !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .hero-input::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-label {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .no-gradient::before,
+        .no-gradient::after {
+            display: none !important;
+        }
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 max-w-7xl py-4 flex justify-between items-center">
+
+            <a href="#" class="flex items-center">
+                <img src="https://kaizentrainingsolutions.com/assets/img/logos/KTSOB.png"
+                    alt="Kaizen Training Solutions" class="h-12 md:h-14">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <button onclick="openModal()"
+                    class="bg-brand text-white px-6 py-2 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Contact Us
+                </button>
+            </div>
+
+            <button class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 overflow-hidden">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <button onclick="openModal()" class="bg-brand text-white px-6 py-2 rounded-full w-full">Contact
+                    Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home"
+        class="relative pt-20 pb-8 md:pt-24 md:pb-8 bg-white overflow-hidden md:h-screen flex flex-col justify-center border-b border-gray-100">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                alt="Corporate Training" class="w-full h-full object-cover ">
+            <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-black via-black/40 to-transparent">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="grid md:grid-cols-2 gap-10 items-center pt-10 sm:pt-0">
+                <div class="text-left py-2">
+                    <h1
+                        class="text-4xl md:text-6xl font-bold text-white leading-[1.1] md:leading-[0.9] mb-4 animate-fade-in-up tracking-tighter">
+                        TRAIN. TRANSFORM. <br>PERFORM.
+                    </h1>
+
+                    <p class="text-sm md:text-lg text-white mb-6 max-w-lg leading-relaxed">
+                        Enabling businesses to build <span
+                            class="font-bold text-white underline decoration-brand underline-offset-4">high-performing</span>
+                        employees through <span
+                            class="font-bold text-white underline decoration-brand underline-offset-4">best-in-class
+                            trainers</span>,
+                        <span class="font-bold text-white underline decoration-brand underline-offset-4">coaches</span>,
+                        and
+                        <span class="font-bold text-white underline decoration-brand underline-offset-4">bespoke
+                            learning solutions</span>.
+                    </p>
+
+
+                    <div class="border-t border-gray-100 pt-4 mb-6">
+                        <p class="text-brand font-bold mb-3 text-base">Potential going untapped?</p>
+                        <ul class="text-white text-sm md:text-base space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-brand mr-3">•</span>
+                                <span>Boost workforce productivity with performance-driven training</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brand mr-3">•</span>
+                                <span>Enable succession planning by preparing future-ready leaders</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-brand mr-3">•</span>
+                                <span>Develop and coach top leaders to drive vision, strategy, and results</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="pt-4 border-t border-gray-100 w-[22rem]">
+                        <div class="marquee-container no-gradient !bg-transparent !p-0">
+                            <div class="marquee-content !gap-8 !animation-duration-[40s]">
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/clients/bharti-airtel.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/client/coca_cola.jpg"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/clients/deloitte.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/clients/aws.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/clients/kora.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/clients/cognex.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/client/tpci.jpg"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/client/tata.jpg"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                                <div class="marquee-item !w-20">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/client/v5_global.png"
+                                        alt="Partner"
+                                        class="filter invert brightness-200 opacity-90 hover:opacity-100 transition" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-200 shadow-xl w-full max-w-md mx-auto md:ml-auto mt-8 md:mt-0">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 tracking-tight">TALK TO US ...</h3>
+                    <form id="hero-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="hero-label">First Name*</label>
+                                <input type="text" name="first_name" required class="w-full hero-input" placeholder="">
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <label class="hero-label">Work Email*</label>
+                            <input type="email" name="user_email" required class="w-full hero-input" placeholder="">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="hero-label">Contact*</label>
+                                <div
+                                    class="flex items-center space-x-1 border-b border-gray-300 focus-within:border-brand transition">
+                                    <span class="text-gray-900 pb-1 flex items-center text-xs">
+                                        <img src="https://flagcdn.com/w20/in.png" alt="India" class="mr-1 w-4">
+                                        +91
+                                    </span>
+                                    <input type="tel" name="user_phone" required maxlength="10"
+                                        class="flex-1 hero-input !border-b-0 text-sm pb-1" placeholder="">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="hero-label">Designation*</label>
+                                <input type="text" name="designation" required class="w-full hero-input text-sm"
+                                    placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="hero-label">Company*</label>
+                                <input type="text" name="company_name" required class="w-full hero-input text-sm"
+                                    placeholder="">
+                            </div>
+                            <div>
+                                <label class="hero-label">Industry*</label>
+                                <input type="text" name="industry" required list="industry-list"
+                                    class="w-full hero-input text-sm" placeholder="">
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-brand text-white py-3 rounded-sm font-bold hover:bg-brand-dark transition-all shadow-xl tracking-widest text-xs uppercase mt-2">
+                            SUBMIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stats Section -->
+    <section id="stats-section" class="py-20 bg-white text-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5">
+        </div>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <span class="text-brand font-bold uppercase tracking-wider text-sm">Growth & Impact</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 mt-2">Our Story in Stats</h2>
+                <p class="text-lg font-light leading-relaxed opacity-90 text-gray-600">
+                    Founded as a Corporate Training company by L&D Thought Leaders and Practitioners with over 35 Years
+                    of 'Been There, Done That' experience.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16 text-center">
+                <!-- Stat 1 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-brand">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="779386">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">People Trained</div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-black">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="500">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">Clients</div>
+                </div>
+                <!-- Stat 3 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-brand">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="100">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">Businesses Consulted</div>
+                </div>
+                <!-- Stat 4 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-black">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="52">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">Industries</div>
+                </div>
+                <!-- Stat 5 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-brand">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="450">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">Indian Cities and Subcities
+                    </div>
+                </div>
+                <!-- Stat 6 -->
+                <div class="p-4 group hover:bg-gray-50 rounded-xl transition duration-300">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 text-black">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="text-3xl font-bold mb-1 text-gray-900"><span class="stat-number"
+                            data-target="1000">0</span>+</div>
+                    <div class="text-sm uppercase tracking-wide opacity-80 text-gray-600">Trainers & Consultants</div>
+                </div>
+            </div>
+
+            <div
+                class="bg-gray-50 px-8 md:px-12 rounded-2xl text-center max-w-4xl mx-auto border border-gray-100 shadow-sm">
+                <p class="text-lg  leading-relaxed mb-6 font-light text-gray-700">
+                    We are more than a training agency—we are your dedicated partners in growth and transformation. We
+                    offer all-encompassing growth solutions under one roof, designed to help businesses, teams, and
+                    individuals thrive.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <style>
+        .expanding-cards-container {
+            display: flex;
+            width: 100%;
+            height: 600px;
+            gap: 10px;
+        }
+
+        .expanding-card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+            position: relative;
+            transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .expanding-card:hover,
+        .expanding-card.active {
+            flex: 6;
+        }
+
+        @media (max-width: 768px) {
+            .expanding-cards-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 800px;
+            }
+
+            .expanding-card {
+                width: 100%;
+                flex: 0 0 70px;
+                /* Standard collapsed height on mobile */
+                margin-bottom: 5px;
+            }
+
+            .expanding-card.active {
+                flex: 1 0 400px;
+                /* Expanded height on mobile */
+            }
+
+            /* Horizontal layout for collapsed content on mobile */
+            .collapsed-content {
+                flex-direction: row !important;
+                justify-content: flex-start !important;
+                padding-left: 20px;
+                gap: 15px;
+            }
+
+            .collapsed-icon {
+                font-size: 1.5rem !important;
+                margin-bottom: 0 !important;
+            }
+
+            .card-title-vertical {
+                writing-mode: horizontal-tb !important;
+                transform: none !important;
+                font-size: 1rem !important;
+                letter-spacing: 1px !important;
+            }
+        }
+
+        .card-content {
+            opacity: 0;
+            transition: opacity 0.3s ease-in 0.4s;
+            transform: translateY(20px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .expanding-card:hover .card-content,
+        .expanding-card.active .card-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Collapsed State Content */
+        .collapsed-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.3s ease-out;
+            opacity: 1;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .expanding-card:hover .collapsed-content,
+        .expanding-card.active .collapsed-content {
+            opacity: 0;
+        }
+
+        .collapsed-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+        }
+
+        .card-title-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Expanded Title */
+        .card-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .card-number {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Individual Card Background Images */
+        .card-1 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-2 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2650&auto=format&fit=crop');
+        }
+
+        .card-3 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-4 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-5 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-6 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-7 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .card-8 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2600&auto=format&fit=crop');
+        }
+
+        .expanding-card {
+            transition: all 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .expanding-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+
+    <section id="services" class="text-gray-900 leading-relaxed">
+        <div class="container mx-auto px-4 max-w-[1400px]">
+            <div class="text-center mb-12">
+                <span class="text-brand font-bold uppercase tracking-wider text-sm">Our Expertise</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Service Categories</h2>
+                <div class="w-24 h-1 bg-brand mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Diverse expertise to drive your business forward.</p>
+            </div>
+
+            <div class="expanding-cards-container">
+                <!-- Card 1 -->
+
+
+                <!-- Card 2 -->
+                <div class="expanding-card card-1 active" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Leadership Development</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-users card-icon-expanded"></i>
+                        <span class="card-number">01</span>
+                        <h3>Leadership Development</h3>
+                        <p class="text-sm mt-2 opacity-90">Empowering managers to better engage and lead teams.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="expanding-card card-2" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Soft and Behavioral Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-comments card-icon-expanded"></i>
+                        <span class="card-number">02</span>
+                        <h3>Soft and Behavioral Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Enhancing communication, EQ, and interpersonal dynamics.</p>
+                    </div>
+                </div>
+                <div class="expanding-card card-3" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Sales Force Automation Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-handshake card-icon-expanded"></i>
+                        <span class="card-number">03</span>
+                        <h3>Sales Force Automation Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Strategies for negotiation, closing, and empathy-driven
+                            service.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="expanding-card card-4" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Technical Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-laptop-code card-icon-expanded"></i>
+                        <span class="card-number">04</span>
+                        <h3>Technical Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Latest IT skills, coding, and software proficiency.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="expanding-card card-5" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Compliance Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-scale-balanced card-icon-expanded"></i>
+                        <span class="card-number">05</span>
+                        <h3>Compliance Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Ensuring adherence to legal, safety, and ethical standards.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="expanding-card card-6" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Team Building</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-people-group card-icon-expanded"></i>
+                        <span class="card-number">06</span>
+                        <h3>Team Building</h3>
+                        <p class="text-sm mt-2 opacity-90">Foster collaboration and trust with engaging activities.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="expanding-card card-7" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">Quality Management Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-check-double card-icon-expanded"></i>
+                        <span class="card-number">07</span>
+                        <h3>Quality Management Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Six Sigma, Lean, and process improvement methodologies.</p>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="expanding-card card-8" onclick="expandCard(this)">
+                    <div class="collapsed-content">
+                        <span class="card-title-vertical">HR and Finance Training</span>
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-chart-pie card-icon-expanded"></i>
+                        <span class="card-number">08</span>
+                        <h3>HR and Finance Training</h3>
+                        <p class="text-sm mt-2 opacity-90">Financial literacy and strategic human resource management.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-0 md:py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="text-center md:mb-16 mb-12">
+                <span class="text-brand font-bold uppercase tracking-wider text-sm">Success Stories</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">What Our Clients Say</h2>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto">
+                <div class="overflow-hidden " id="testimonial-slider">
+                    <div class="flex transition-transform duration-500" id="slider-track">
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div
+                                class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center relative pt-16 testimonial-card">
+                                <div
+                                    class="absolute -top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/review/rahul.png"
+                                        alt="Rahul Sharma" class="w-full h-full object-cover">
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="text-brand text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                                    <p class="text-gray-700 text-lg italic mb-4 testimonial-text">We would like to
+                                        thanks you and your team
+                                        for partnering with us on the Smart Order Pilot Project (TARA).
+                                        “Partnering with Kaizen Training Solutions for our classroom & OJT training
+                                        requirements proved to be an outstanding decision for our organization. The team
+                                        spent time analyzing our actual needs & presented a customized roadmap for the
+                                        same.
+                                        The team was patient & diligent to explain every peculiarity in detail to us.
+                                        The
+                                        route trainers were of good quality , punctual & took the responsibility for the
+                                        tasks assigned to them. The structured model of training followed by them made
+                                        the
+                                        complex project execution seamless.
+                                        They took measures partnering with us with full sincerity and worked towards the
+                                        success of the project. The use of tools like ADDIE model for training &
+                                        Kirkpatrick
+                                        model of evaluation helped in creating the visibility to the in- market working
+                                        and
+                                        issues, and also was an enabler to drive the project better. The project team &
+                                        management team were proactive & collaborated well with us which led to a great
+                                        execution of the project. Kudos!”</p>
+                                    <button onclick="toggleTestimonial(this)"
+                                        class="text-brand font-semibold text-sm hover:underline mb-6 block mx-auto">Read
+                                        More</button>
+                                </div>
+                                <div class="mt-auto">
+                                    <h4 class="font-bold text-gray-900">Rahul Sharma</h4>
+                                    <p class="text-gray-500 text-sm">CIO, RECKITT</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div
+                                class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center relative pt-16 testimonial-card">
+                                <div
+                                    class="absolute -top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/review/debayan.png"
+                                        alt="Debayan Das" class="w-full h-full object-cover">
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="text-brand text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                                    <p class="text-gray-700 text-lg italic mb-4 testimonial-text">"Their leadership
+                                        workshop was exactly what
+                                        our management team needed. The trainers were engaging, insightful, and the
+                                        content
+                                        was highly practical."
+                                        We had a great sales event with Kaizen Training Solutions,
+                                        “and it was one of the best events we had. The entire learning objectives were
+                                        met,
+                                        which was the objective for the company. I wish the entire Kaizen team good
+                                        luck.
+                                        Thank you Team Kaizen. ” </p>
+                                    <button onclick="toggleTestimonial(this)"
+                                        class="text-brand font-semibold text-sm hover:underline mb-6 block mx-auto">Read
+                                        More</button>
+                                </div>
+                                <div class="mt-auto">
+                                    <h4 class="font-bold text-gray-900">Debayan Das</h4>
+                                    <p class="text-gray-500 text-sm">Sales Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div
+                                class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center relative pt-16 testimonial-card">
+                                <div
+                                    class="absolute -top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white">
+                                    <img src="https://kaizentrainingsolutions.com/assets/img/review/shrish.png"
+                                        alt="Shrish Tiwari" class="w-full h-full object-cover">
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="text-brand text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                                    <p class="text-gray-700 text-lg italic mb-4 testimonial-text">It was a very good
+                                        experience with KTS.
+                                        They provided excellent training.
+                                        It was highly informative, and the part I found most valuable was the 'sorting'
+                                        segment. We even visited places we had never been to before, along with them.
+                                        They
+                                        helped us identify and bring out our unused items from storage, enabling us to
+                                        reuse
+                                        them for our company's development. We reintegrated them into production.
+                                        So, 5S is a very important activity. If we continue to implement it in our
+                                        company,
+                                        it will not only lead to the company’s growth but also to our personal growth.
+                                        Mr.
+                                        Pradeep Sharma delivered a fantastic training session. He covered all aspects
+                                        thoroughly and explained everything with relevant examples in a way that was
+                                        easy to
+                                        understand. I am very satisfied with this trainer. Thank you</p>
+                                    <button onclick="toggleTestimonial(this)"
+                                        class="text-brand font-semibold text-sm hover:underline mb-6 block mx-auto">Read
+                                        More</button>
+                                </div>
+                                <div class="mt-auto">
+                                    <h4 class="font-bold text-gray-900">Mr. Shrish Tiwari</h4>
+                                    <p class="text-gray-500 text-sm">General Manager - HR</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div
+                                class="bg-gray-50 p-8 rounded-2xl border border-gray-100 text-center relative pt-16 testimonial-card">
+                                <div
+                                    class="absolute -top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white flex items-center justify-center">
+                                    <i class="fa-solid fa-user text-3xl text-gray-400"></i>
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="text-brand text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                                    <p class="text-gray-700 text-lg italic mb-4 testimonial-text">Thank you for
+                                        conducting the Interviewing Skills training program.
+                                        “It was a valuable experience for all participants, truly appreciating the
+                                        feedback that was taken into account and effectively implemented—it made a
+                                        noticeable difference. Additionally, Sahiba for doing a good job facilitating
+                                        yesterday’s session.”</p>
+                                    <button onclick="toggleTestimonial(this)"
+                                        class="text-brand font-semibold text-sm hover:underline mb-6 block mx-auto">Read
+                                        More</button>
+                                </div>
+                                <div class="mt-auto">
+                                    <h4 class="font-bold text-gray-900">Poonam Bhandari
+                                    </h4>
+                                    <p class="text-gray-500 text-sm">Executive HR (Training ) -Innodata
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="prevSlide()"
+                    class="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-brand hover:text-white transition">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="nextSlide()"
+                    class="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 bg-white text-gray-800 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-brand hover:text-white transition">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-brand transition"></button>
+                    <button onclick="goToSlide(1)"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-brand transition"></button>
+                    <button onclick="goToSlide(2)"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-brand transition"></button>
+                    <button onclick="goToSlide(3)"
+                        class="w-3 h-3 rounded-full bg-gray-300 hover:bg-brand transition"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="pb-20 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="text-center mb-16">
+                <span class="text-brand font-bold uppercase tracking-wider text-sm">Common Queries</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+                    <button
+                        class="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition focus:outline-none"
+                        onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-800">Do you offer customized training programs?</span>
+                        <i class="fa-solid fa-plus text-brand transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-gray-50 text-gray-600">
+                        <div class="faq-inner border-t border-gray-100 px-6 py-4">
+                            Yes, absolutely. We assess your organization's specific needs and tailor our training
+                            modules to address your unique challenges and goals.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+                    <button
+                        class="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition focus:outline-none"
+                        onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-800">Can training be conducted virtually?</span>
+                        <i class="fa-solid fa-plus text-brand transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-gray-50 text-gray-600">
+                        <div class="faq-inner border-t border-gray-100 px-6 py-4">
+                            Yes, we offer both in-person workshops and interactive virtual training sessions using
+                            platforms like Zoom, Teams, or Webex.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+                    <button
+                        class="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition focus:outline-none"
+                        onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-800">What is the duration of your standard courses?</span>
+                        <i class="fa-solid fa-plus text-brand transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-gray-50 text-gray-600">
+                        <div class="faq-inner border-t border-gray-100 px-6 py-4">
+                            Our courses range from half-day to multi-days journey based training. The duration depends
+                            on the topic and depth of coverage required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+                    <button
+                        class="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition focus:outline-none"
+                        onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-800">Do you provide post-training support?</span>
+                        <i class="fa-solid fa-plus text-brand transition-transform"></i>
+                    </button>
+                    <div class="faq-content bg-gray-50 text-gray-600">
+                        <div class="faq-inner border-t border-gray-100 px-6 py-4">
+                            Yes, we believe learning is a journey. We provide follow-up resources, refresher sessions,
+                            and impact assessments to ensure retention and application.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="openModal()" class="text-brand font-bold hover:underline">Still have questions? Contact
+                    Us</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <a href="#" class="flex items-center mb-6">
+                        <img src="https://kaizentrainingsolutions.com/assets/img/logos/KTSOB.png"
+                            alt="Kaizen Training Solutions" class="h-10 brightness-0 invert">
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Your partner in professional growth. We deliver excellence in corporate training and
+                        development.
+                    </p>
+                    <div class="flex space-x-4">
+
+                        <a href="https://www.linkedin.com/company/kaizen-training-solutions"
+                            class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand transition"><i
+                                class="fa-brands fa-linkedin-in text-sm"></i></a>
+
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#home" class="hover:text-brand transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-brand transition">About Us</a></li>
+                        <li><a href="#services" class="hover:text-brand transition">Our Services</a></li>
+                        <li><a href="#testimonials" class="hover:text-brand transition">Testimonials</a></li>
+                        <li><a href="#faq" class="hover:text-brand transition">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Services</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#home" class="hover:text-brand transition">Corporate Training</a>
+                        </li>
+                        <li><a href="#home" class="hover:text-brand transition">Leadership Skills</a>
+                        </li>
+                        <li><a href="#home" class="hover:text-brand transition">Soft Skills</a></li>
+                        <li><a href="#home" class="hover:text-brand transition">Sales Enablement</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-xs">
+                <p>&copy; 2025 Kaizen Training Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="leadModal" class="fixed inset-0 z-[60] invisible opacity-0 transition-opacity duration-300 ease-in-out"
+        aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()">
+        </div>
+
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <div class="relative transform scale-95 opacity-0 transition-all duration-300 ease-out sm:my-8 sm:w-full sm:max-w-lg bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border-t-8 border-brand overflow-hidden"
+                id="modal-panel">
+
+                <div class="absolute top-4 right-4 z-10">
+                    <button onclick="closeModal()" type="button"
+                        class="bg-white/20 rounded-full p-2 text-white hover:text-gray-100 focus:outline-none hover:bg-white/30 transition">
+                        <span class="sr-only">Close</span>
+                        <i class="fa-solid fa-xmark text-xl w-6 h-6 flex items-center justify-center"></i>
+                    </button>
+                </div>
+
+                <div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-left sm:ml-4 sm:mt-0 w-full">
+                            <h3 class="text-2xl font-bold leading-6 text-white mb-2" id="modal-title">Get In Touch
+                            </h3>
+                            <p class="text-sm text-gray-200 mb-6">Fill out the form below and our team will get back to
+                                you within 24 hours.</p>
+
+                            <form onsubmit="handleFormSubmit(event)" class="space-y-3">
+                                <div class="grid grid-cols-1 gap-3">
+                                    <div>
+                                        <label class="block text-gray-200 text-xs font-semibold mb-1">Name</label>
+                                        <input type="text" name="name" required
+                                            class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                            placeholder="Name">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-gray-200 text-xs font-semibold mb-1">Email</label>
+                                        <input type="email" name="user_email" required
+                                            class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                            placeholder="Email">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-200 text-xs font-semibold mb-1">Phone</label>
+                                        <input type="tel" name="user_phone" required maxlength="10"
+                                            class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                            placeholder="Phone">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label
+                                            class="block text-gray-200 text-xs font-semibold mb-1">Designation</label>
+                                        <input type="text" name="designation" required
+                                            class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                            placeholder="Job Title">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-200 text-xs font-semibold mb-1">Company</label>
+                                        <input type="text" name="company_name" required
+                                            class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                            placeholder="Company">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-gray-200 text-xs font-semibold mb-1">Industry</label>
+                                    <input type="text" name="industry" required list="industry-list"
+                                        class="w-full px-3 py-2 text-sm bg-white/90 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-brand"
+                                        placeholder="Select or Type Industry">
+                                </div>
+
+                                <div class="flex items-start">
+                                    <p class="text-[10px] text-center text-gray-300 w-full">I agree to the Terms &
+                                        Conditions and authorize Kaizen Training Solutions to contact me.</p>
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-brand text-white py-3 rounded-lg font-bold hover:bg-brand-dark transition shadow-lg mt-4">
+                                    Send Enquiry
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919717275572?text=Hi%20Kaizen" target="_blank"
+        class="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-[#128C7E] transition transform hover:scale-110 animate-bounce">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn"
+        class="fixed hidden md:block bottom-32 left-4 md:bottom-12 md:left-8 z-40 bg-brand text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-brand-dark transition-all duration-300 opacity-0 invisible transform translate-y-10 hover:scale-110">
+        <i class="fa-solid fa-arrow-up text-xl"></i>
+    </button>
+
+    <div id="mobile-sticky-btn"
+        class="fixed bottom-0 left-0 w-full z-40 p-4 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:hidden transform translate-y-full transition-transform duration-300">
+        <button onclick="openModal()" class="w-full bg-brand text-white font-bold py-3 rounded-lg shadow-lg">
+            Book Now
+        </button>
+    </div>
+
+    <!-- Global Datalist for Industries -->
+    <datalist id="industry-list">
+        <option value="IT & Software">
+        <option value="Manufacturing">
+        <option value="Education & Training">
+        <option value="Banking & Finance">
+        <option value="Healthcare">
+        <option value="Retail">
+        <option value="Construction">
+        <option value="Telecommunications">
+        <option value="Automotive">
+        <option value="Real Estate">
+        <option value="Logistics & Supply Chain">
+        <option value="Consulting">
+        <option value="Media & Entertainment">
+        <option value="Energy & Utilities">
+        <option value="Government / Public Sector">
+        <option value="Non-Profit / NGO">
+        <option value="Other">
+    </datalist>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
