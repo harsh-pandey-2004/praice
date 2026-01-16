@@ -1,3 +1,16 @@
+const blockedEmailDomains = [
+    "gmail.com",
+    "yahoo.com",
+    "yahoo.in",
+    "outlook.com",
+    "hotmail.com",
+    "live.com",
+    "icloud.com",
+    "aol.com",
+    "protonmail.com",
+    "zoho.com"
+];
+
 const btn = document.getElementById('mobile-menu-btn');
 const menu = document.getElementById('mobile-menu');
 
@@ -76,7 +89,20 @@ function handleFormSubmit(event) {
         alert('Please enter a valid 10-digit phone number.');
         return;
     }
+const emailInput = form.querySelector('input[type="email"]');
+    if (emailInput) {
+        const email = emailInput.value.trim().toLowerCase();
+        const domain = email.split('@')[1];
 
+        if (!domain || blockedEmailDomains.includes(domain)) {
+            alert(
+                'Please enter your work email address.\n' +
+                'Personal email domains like Gmail, Yahoo, Outlook are not allowed.'
+            );
+            emailInput.focus();
+            return;
+        }
+    }
     const button = form.querySelector('button[type="submit"]');
     const originalText = button.innerText;
     
@@ -322,3 +348,4 @@ function scrollToTop() {
         menu.classList.add('hidden');
     }
 }
+
