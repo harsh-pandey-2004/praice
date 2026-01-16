@@ -112,7 +112,7 @@ const emailInput = form.querySelector('input[type="email"]');
 
     // FormSubmit.co AJAX Endpoint
     // PLEASE REPLACE 'YOUR_EMAIL_ADDRESS' with your actual email address
-    const endpoint = "https://formsubmit.co/ajax/codesource287@gmail.com";
+    const endpoint = "https://formsubmit.co/ajax/Contact@kaizentrainingsolutions.com";
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
@@ -348,4 +348,5 @@ function scrollToTop() {
         menu.classList.add('hidden');
     }
 }
+
 
